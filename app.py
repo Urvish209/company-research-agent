@@ -133,7 +133,7 @@ Strategic Research • Business Intelligence • AI Transformation
 # METRICS
 # =====================================
 
-col1, col2, col3 = st.columns(3)
+col1, col3 = st.columns(2)
 
 with col1:
     st.metric("Coverage", "360°")
