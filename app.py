@@ -1,110 +1,163 @@
 import streamlit as st
 from groq import Groq
 
-# ---------------------------
-# Page Config
-# ---------------------------
+# =====================================
+# PAGE CONFIG
+# =====================================
 
 st.set_page_config(
     page_title="AI Company Intelligence Platform",
-    page_icon="📊",
+    page_icon="🚀",
     layout="wide"
 )
 
-# ---------------------------
-# Custom CSS
-# ---------------------------
+# =====================================
+# CUSTOM CSS
+# =====================================
 
 st.markdown("""
 <style>
 
 .stApp {
-    background-color: #F8FAFC;
+    background-color: #0F172A;
 }
 
+/* Hide Streamlit Menu */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Title */
+
 .main-title {
-    font-size: 42px;
-    font-weight: 700;
-    color: #111827;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 800;
+    color: white;
 }
 
 .sub-title {
+    text-align: center;
     font-size: 18px;
-    color: #6B7280;
-    margin-bottom: 20px;
+    color: #CBD5E1;
+    margin-bottom: 35px;
 }
 
-.block-container {
-    padding-top: 2rem;
+/* Input */
+
+.stTextInput input {
+    background-color: #1E293B !important;
+    color: white !important;
+    border-radius: 12px !important;
+    border: 1px solid #334155 !important;
+    height: 50px;
+}
+
+/* Button */
+
+.stButton button {
+    background-color: #2563EB;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.stButton button:hover {
+    background-color: #1D4ED8;
+}
+
+/* Metrics */
+
+[data-testid="stMetric"] {
+    background-color: #1E293B;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+}
+
+[data-testid="stMetricValue"] {
+    color: white !important;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #CBD5E1 !important;
+}
+
+/* Expander */
+
+.streamlit-expanderHeader {
+    color: white !important;
+}
+
+div[data-testid="stExpander"] {
+    background-color: #1E293B;
+    border-radius: 12px;
+    border: 1px solid #334155;
+}
+
+/* Generated Report Text */
+
+.stMarkdown {
+    color: white;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------
-# Groq Client
-# ---------------------------
+# =====================================
+# GROQ CLIENT
+# =====================================
 
 client = Groq(
     api_key=st.secrets["GROQ_API_KEY"]
 )
 
-# ---------------------------
-# Sidebar
-# ---------------------------
-
-with st.sidebar:
-
-    st.title("📊 AI Research Agent")
-
-    st.markdown("""
-This platform generates:
-
-✅ Company Overview
-
-✅ Business Intelligence
-
-✅ Business Challenges
-
-✅ AI Opportunities
-
-✅ CEO Pitch
-
----
-
-Powered by:
-
-- Streamlit
-- Groq
-- Llama 3.3 70B
-""")
-
-# ---------------------------
-# Header
-# ---------------------------
+# =====================================
+# HEADER
+# =====================================
 
 st.markdown("""
 <div class="main-title">
-AI Company Intelligence Platform
+🚀 AI Company Intelligence Platform
 </div>
 
 <div class="sub-title">
-Research • Business Analysis • AI Strategy • Executive Recommendations
+Strategic Research • Business Intelligence • AI Transformation
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------------------
-# Input Section
-# ---------------------------
+# =====================================
+# METRICS
+# =====================================
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Coverage", "360°")
+
+with col2:
+    st.metric("Analysis", "Strategic")
+
+with col3:
+    st.metric("Output", "CEO Ready")
+
+st.write("")
+
+# =====================================
+# INPUT
+# =====================================
 
 company_name = st.text_input(
-    "Enter Company Name",
-    placeholder="Adani Realty, Prestige Group, Microsoft, Amazon..."
+    "",
+    placeholder="Enter Company Name (Adani Realty, Microsoft, Amazon, Prestige Group...)"
 )
 
-# ---------------------------
-# Report Function
-# ---------------------------
+# =====================================
+# REPORT GENERATOR
+# =====================================
 
 def generate_company_report(company):
 
@@ -113,35 +166,33 @@ You are a Senior Strategy Consultant and AI Transformation Advisor.
 
 Analyze the company: {company}
 
-Generate a detailed executive-level intelligence report.
+Generate a highly detailed intelligence report.
 
-=================================================
-
+=========================================
 1. EXECUTIVE SUMMARY
+=========================================
 
 Provide:
-
 - Company snapshot
 - Industry position
 - Strategic observations
 - Growth outlook
 
-=================================================
-
+=========================================
 2. COMPANY OVERVIEW
+=========================================
 
 Include:
-
 - What the company does
 - Industry
-- Company scale
+- Scale
 - Geographic presence
 - Market positioning
 - Competitive advantages
 
-=================================================
-
+=========================================
 3. KEY BUSINESS INFORMATION
+=========================================
 
 Identify:
 
@@ -153,11 +204,11 @@ Identify:
 - Strategic initiatives
 - Important public information
 
-Explain why each point is important.
+Explain why each point matters.
 
-=================================================
-
+=========================================
 4. POTENTIAL BUSINESS CHALLENGES
+=========================================
 
 Analyze:
 
@@ -169,17 +220,17 @@ C. Customer Experience Challenges
 
 D. Technology Challenges
 
-For each challenge provide:
+For every challenge provide:
 
 - Observation
 - Reasoning
-- Business Impact
+- Potential Business Impact
 
 Avoid generic answers.
 
-=================================================
-
+=========================================
 5. AI OPPORTUNITIES
+=========================================
 
 Provide company-specific recommendations.
 
@@ -195,44 +246,42 @@ Cover:
 
 1. Sales
 2. Marketing
-3. Customer Service
+3. Customer Support
 4. Operations
 5. Analytics
 6. Document Processing
 7. Decision Making
 
-=================================================
-
+=========================================
 6. IMPLEMENTATION ROADMAP
+=========================================
 
 Create:
 
-Short Term (0-3 Months)
+Short-Term (0-3 Months)
 
-Medium Term (3-12 Months)
+Medium-Term (3-12 Months)
 
-Long Term (1-3 Years)
+Long-Term (1-3 Years)
 
-=================================================
-
+=========================================
 7. CEO PERSONALIZED PITCH
+=========================================
 
 Imagine you are meeting the CEO.
 
-Write a professional one-page pitch explaining:
+Write a one-page executive pitch including:
 
-- Why you reached out
-- Key observations
-- Business challenges discovered
-- AI opportunities identified
-- Recommended solutions
+- Why we reached out
+- Key findings
+- Business challenges
+- AI opportunities
+- Recommended roadmap
 - Expected business outcomes
 
-The pitch should sound like a consulting firm presentation.
+Make it persuasive and professional.
 
-=================================================
-
-Use professional formatting with headings and bullet points.
+Use clear headings, bullet points, and consultant-style formatting.
 """
 
     response = client.chat.completions.create(
@@ -249,17 +298,20 @@ Use professional formatting with headings and bullet points.
 
     return response.choices[0].message.content
 
-# ---------------------------
-# Generate Button
-# ---------------------------
+# =====================================
+# GENERATE BUTTON
+# =====================================
 
-if st.button("🚀 Generate Intelligence Report", use_container_width=True):
+if st.button(
+    "🚀 Generate Intelligence Report",
+    use_container_width=True
+):
 
     if not company_name.strip():
         st.warning("Please enter a company name.")
         st.stop()
 
-    with st.spinner("Researching company and generating report..."):
+    with st.spinner("Researching company and generating intelligence report..."):
 
         try:
 
@@ -267,31 +319,21 @@ if st.button("🚀 Generate Intelligence Report", use_container_width=True):
 
             st.success("Report Generated Successfully")
 
-            col1, col2, col3 = st.columns(3)
-
-            with col1:
-                st.metric("Analysis Type", "Strategic")
-
-            with col2:
-                st.metric("Coverage", "360°")
-
-            with col3:
-                st.metric("Focus", "AI Transformation")
-
             st.divider()
 
             with st.expander(
-                "📄 View Intelligence Report",
+                "📄 Intelligence Report",
                 expanded=True
             ):
                 st.markdown(report)
 
             st.download_button(
-                label="📥 Download Report",
+                label="📥 Download Intelligence Report",
                 data=report,
-                file_name=f"{company_name}_report.txt",
-                mime="text/plain"
+                file_name=f"{company_name}_AI_Intelligence_Report.txt",
+                mime="text/plain",
+                use_container_width=True
             )
 
         except Exception as e:
-            st.error(f"Error: {str(e)}")
+            st.error(str(e))
