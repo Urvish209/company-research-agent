@@ -138,8 +138,8 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("Coverage", "360°")
 
-with col2:
-    st.metric("Analysis", "Strategic")
+# with col2:
+#     st.metric("Analysis", "Strategic")
 
 with col3:
     st.metric("Output", "CEO Ready")
